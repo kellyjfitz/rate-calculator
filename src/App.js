@@ -3,6 +3,7 @@ import Calculator from "./Calculator";
 
 import Row from "./Row";
 import HeadRow from "./HeadRow";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function App() {
   const [input, setInput] = useState(null);
@@ -20,21 +21,37 @@ export default function App() {
     rate + 0.0045,
     rate + 0.005,
     rate + 0.0055,
+    rate + 0.006,
+    rate + 0.0065,
+    rate + 0.007,
+    rate + 0.0075,
+    rate + 0.008,
+    rate + 0.0085,
+    rate + 0.009,
+    rate + 0.0095,
+    rate + 0.01,
   ];
 
   const principals = [
     300000, 400000, 500000, 600000, 700000, 800000, 900000, 1000000,
   ];
   function getInput(event) {
-    setInput(event.target.value);
+    setInput(event.target.value / 100);
   }
   function handleSubmit(event) {
     event.preventDefault();
+    setRate(input);
   }
 
   return (
-    <div>
-      <h1>Rate calculator</h1>
+    <div className="container">
+      <h1 className="mt-5">Rate calculator</h1>
+      <p>
+        Add the current interest rate below. <br />
+        The table will update to tell you the monthly repayment and the
+        difference in monthly repayments.
+      </p>
+      <p>These calculations are based on a 30-year loan term.</p>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
