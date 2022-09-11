@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import Calculator from "./Calculator";
-
+import Table from "react-bootstrap/Table";
 import Row from "./Row";
 import HeadRow from "./HeadRow";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
+import Button from "react-bootstrap/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCalculator } from "@fortawesome/free-solid-svg-icons";
+import "./App.css";
 
 export default function App() {
   const [input, setInput] = useState(null);
@@ -45,23 +51,28 @@ export default function App() {
 
   return (
     <div className="container">
-      <h1 className="mt-5">Rate calculator</h1>
+      <h1 className="mt-5">Repayment calculator</h1>
+      <p>Add the current interest rate below.</p>
+
+      <Form onSubmit={handleSubmit}>
+        <InputGroup>
+          <Form.Control
+            type="text"
+            placeholder="Enter interest rate"
+            onChange={getInput}
+          />
+          <Button type="submit">
+            <FontAwesomeIcon icon={faCalculator} />
+          </Button>
+        </InputGroup>
+      </Form>
       <p>
-        Add the current interest rate below. <br />
         The table will update to tell you the monthly repayment and the
         difference in monthly repayments.
+        <br />
+        These calculations are based on a 30-year loan term.
       </p>
-      <p>These calculations are based on a 30-year loan term.</p>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Enter interest rate"
-          onChange={getInput}
-        />
-        <input type="submit" />
-      </form>
-
-      <table>
+      <Table striped responsive>
         <thead>
           <HeadRow rates={rates} />
         </thead>
@@ -75,7 +86,7 @@ export default function App() {
           <Row rates={rates} principal={900000} />
           <Row rates={rates} principal={1000000} />
         </tbody>
-      </table>
+      </Table>
     </div>
   );
 }
