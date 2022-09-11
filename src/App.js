@@ -14,33 +14,31 @@ import "./App.css";
 export default function App() {
   const [input, setInput] = useState(null);
   const [rate, setRate] = useState(0.03);
-  const rates = [
-    rate,
-    rate + 0.001,
-    rate + 0.0015,
-    rate + 0.002,
-    rate + 0.0025,
-    rate + 0.003,
-    rate + 0.0035,
-    rate + 0.004,
-    rate + 0.0045,
-    rate + 0.005,
-    rate + 0.0055,
-    rate + 0.006,
-    rate + 0.0065,
-    rate + 0.007,
-    rate + 0.0075,
-    rate + 0.008,
-    rate + 0.0085,
-    rate + 0.009,
-    rate + 0.0095,
-    rate + 0.01,
-  ];
-  let ratesTest = [rate];
-  console.log(ratesTest.length);
-  //going to try to do something here to automatically generate the values in the rates array
 
-  console.log(ratesTest);
+  const rates = [rate];
+
+  //using this loop to generate the new rate values
+  //which go up by 0.0005 each time
+  //that's 5 basis points
+  //some of the later values end up super long, not sure why
+  //if I try to round them before pushing them to the array it errors every time
+  for (let i = 0; i < 20; i++) {
+    let newRate = rates[rates.length - 1] + 0.0005;
+    rates.push(newRate);
+  }
+  // to get around the above error, I round the interest rates
+  // then push them to a new array of rounded rates
+  // I leave out the second one in the original array
+  //because they never lift rates by just 5 basis points
+  let roundedRates = [];
+  rates.map(function (roundedRate, index) {
+    roundedRate = roundedRate.toFixed(4);
+    if (index !== 1) {
+      roundedRates.push(roundedRate);
+    }
+    return null;
+  });
+
   function getInput(event) {
     setInput(event.target.value / 100);
   }
@@ -70,21 +68,22 @@ export default function App() {
         The table will update to tell you the monthly repayment and the
         difference in monthly repayments.
         <br />
-        These calculations are based on a 30-year loan term.
+        These calculations are based on a <strong>20 years</strong> remaining on
+        the loan term.
       </p>
       <Table striped responsive>
         <thead>
-          <HeadRow rates={rates} />
+          <HeadRow rates={roundedRates} />
         </thead>
         <tbody>
-          <Row rates={rates} principal={300000} />
-          <Row rates={rates} principal={400000} />
-          <Row rates={rates} principal={500000} />
-          <Row rates={rates} principal={600000} />
-          <Row rates={rates} principal={700000} />
-          <Row rates={rates} principal={800000} />
-          <Row rates={rates} principal={900000} />
-          <Row rates={rates} principal={1000000} />
+          <Row rates={roundedRates} principal={300000} />
+          <Row rates={roundedRates} principal={400000} />
+          <Row rates={roundedRates} principal={500000} />
+          <Row rates={roundedRates} principal={600000} />
+          <Row rates={roundedRates} principal={700000} />
+          <Row rates={roundedRates} principal={800000} />
+          <Row rates={roundedRates} principal={900000} />
+          <Row rates={roundedRates} principal={1000000} />
         </tbody>
       </Table>
     </div>

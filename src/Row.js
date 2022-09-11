@@ -7,7 +7,7 @@ export default function Row(props) {
     const monthlyInterestPlusOne = monthlyInterest + 1;
 
     //Third, multiply the number of years in the term of the mortgage by 12 to calculate the number of monthly payments you’ll make.
-    const months = 30 * 12;
+    const months = 20 * 12;
     //Fourth, raise the result of 1 plus the monthly rate to the negative power of the number of monthly payments you’ll make.
     let repayment = monthlyInterestPlusOne ** -months;
     //Fifth, subtract that result from 1.
