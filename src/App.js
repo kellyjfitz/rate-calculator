@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Calculator from "./Calculator";
-import Table from "react-bootstrap/Table";
+
 import Row from "./Row";
 import HeadRow from "./HeadRow";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
@@ -17,7 +17,6 @@ export default function App() {
   const rates = [
     rate,
     rate + 0.001,
-
     rate + 0.0015,
     rate + 0.002,
     rate + 0.0025,
@@ -37,10 +36,11 @@ export default function App() {
     rate + 0.0095,
     rate + 0.01,
   ];
+  let ratesTest = [rate];
+  console.log(ratesTest.length);
+  //going to try to do something here to automatically generate the values in the rates array
 
-  const principals = [
-    300000, 400000, 500000, 600000, 700000, 800000, 900000, 1000000,
-  ];
+  console.log(ratesTest);
   function getInput(event) {
     setInput(event.target.value / 100);
   }
