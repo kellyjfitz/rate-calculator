@@ -80,17 +80,17 @@ export default function App() {
           </Button>
         </InputGroup>
       </Form>
-      <p>Add the current interest rate above.</p>
+      <p>Add the current/initial interest rate above.</p>
       <p>
         The tables will update to tell you the monthly repayment and the
-        difference in repayments following the rate change.
+        difference in repayments following a rate change.
       </p>
       <p>
         The first table shows you rate increases and the second table rate
         decreases.
       </p>
       <p>
-        These calculations are based on a <strong>20 years</strong> remaining on
+        These calculations are based on <strong>20 years</strong> remaining on
         the loan term and don't factor in fees.
       </p>
       <h3>Rate increases</h3>
